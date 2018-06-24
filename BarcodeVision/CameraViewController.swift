@@ -15,11 +15,14 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     var previewLayer : AVCaptureVideoPreviewLayer?
     var request : VNDetectBarcodesRequest!
     var seqHandler : VNSequenceRequestHandler!
+    var paused : Bool = false
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        startVideoFeed()
+        if previewLayer == nil {
+            startVideoFeed()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -54,9 +57,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             }
             
             for r in observations {
-                if let barcodeObservation = r as? VNBarcodeObservation,
-                    let payload = barcodeObservation.payloadStringValue {
-                    print(payload)
+                if let barcodeObservation = r as? VNBarcodeObservation {
+                    self.handleObservation(observation: barcodeObservation)
                 }
             }
         }
@@ -65,10 +67,33 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        if paused {
+            return
+        }
+        
         let pixelBuffer : CVPixelBuffer = sampleBuffer.imageBuffer!
         
         try? seqHandler.perform([request], on: pixelBuffer)
     }
 
+    func handleObservation(observation: VNBarcodeObservation) {
+        guard let payload = observation.payloadStringValue else {
+            return
+        }
+        
+        self.paused = true
+        
+        let alertView = UIAlertController(title: "Barcode detected", message: payload, preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            self.paused = false
+        }
+        
+        alertView.addAction(cancelAction)
+        
+        present(alertView, animated: false) {
+            
+        }
+    }
 }
 
