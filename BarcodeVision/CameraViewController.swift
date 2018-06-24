@@ -13,6 +13,8 @@ import Vision
 class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     var session = AVCaptureSession()
     var previewLayer : AVCaptureVideoPreviewLayer?
+    var request : VNDetectBarcodesRequest!
+    var seqHandler : VNSequenceRequestHandler!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -21,7 +23,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
     
     override func viewDidLayoutSubviews() {
-        self.view.layer.sublayers?[0].frame = self.view.bounds
+        previewLayer?.frame = self.view.bounds
     }
     
     override var shouldAutorotate: Bool {
@@ -35,7 +37,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         let deviceInput = try! AVCaptureDeviceInput(device: captureDevice!)
         let deviceOutput = AVCaptureVideoDataOutput()
         deviceOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
-        deviceOutput.setSampleBufferDelegate(self, queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.default))
+        deviceOutput.setSampleBufferDelegate(self, queue: DispatchQueue.global(qos: .default))
         session.addInput(deviceInput)
         session.addOutput(deviceOutput)
         
@@ -44,6 +46,28 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         self.view.layer.addSublayer(imageLayer)
         
         session.startRunning()
+        
+        request = VNDetectBarcodesRequest { (request, error) in
+            guard let observations = request.results as? [VNObservation],
+                observations.count > 0 else {
+                return
+            }
+            
+            for r in observations {
+                if let barcodeObservation = r as? VNBarcodeObservation,
+                    let payload = barcodeObservation.payloadStringValue {
+                    print(payload)
+                }
+            }
+        }
+        
+        seqHandler = VNSequenceRequestHandler()
+    }
+    
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        let pixelBuffer : CVPixelBuffer = sampleBuffer.imageBuffer!
+        
+        try? seqHandler.perform([request], on: pixelBuffer)
     }
 
 }
