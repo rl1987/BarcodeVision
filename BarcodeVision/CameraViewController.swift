@@ -13,7 +13,7 @@ import Vision
 class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     var session = AVCaptureSession()
     var previewLayer : AVCaptureVideoPreviewLayer?
-    var request : VNDetectBarcodesRequest!
+    var request : VNDetectBarcodesRequest?
     var seqHandler : VNSequenceRequestHandler!
     var paused : Bool = false
     
@@ -74,6 +74,10 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         }
         
         guard let pixelBuffer : CVPixelBuffer = sampleBuffer.imageBuffer else {
+            return
+        }
+        
+        guard let request = request else {
             return
         }
         
