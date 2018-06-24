@@ -58,7 +58,9 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             
             for r in observations {
                 if let barcodeObservation = r as? VNBarcodeObservation {
-                    self.handleObservation(observation: barcodeObservation)
+                    DispatchQueue.main.async {
+                        self.handleObservation(observation: barcodeObservation)
+                    }
                 }
             }
         }
@@ -71,7 +73,9 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             return
         }
         
-        let pixelBuffer : CVPixelBuffer = sampleBuffer.imageBuffer!
+        guard let pixelBuffer : CVPixelBuffer = sampleBuffer.imageBuffer else {
+            return
+        }
         
         try? seqHandler.perform([request], on: pixelBuffer)
     }
