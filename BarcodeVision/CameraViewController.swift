@@ -89,7 +89,15 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             self.paused = false
         }
         
+        let shareAction = UIAlertAction(title: "Share", style: .default) { (action) in
+            self.paused = false
+            
+            let shareSheet = UIActivityViewController(activityItems: [payload], applicationActivities: nil)
+            self.present(shareSheet, animated: true, completion: nil)
+        }
+        
         alertView.addAction(cancelAction)
+        alertView.addAction(shareAction)
         
         present(alertView, animated: false) {
             
