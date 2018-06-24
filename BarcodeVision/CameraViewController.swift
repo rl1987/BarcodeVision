@@ -99,8 +99,11 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         alertView.addAction(cancelAction)
         alertView.addAction(shareAction)
         
+        let generator = UISelectionFeedbackGenerator()
+        generator.prepare()
+        
         present(alertView, animated: false) {
-            
+            generator.selectionChanged()
         }
     }
 }
