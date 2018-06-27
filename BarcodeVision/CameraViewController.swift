@@ -85,13 +85,19 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
 
     func handleObservation(observation: VNBarcodeObservation) {
+        if self.paused {
+            return
+        }
+        
         guard let payload = observation.payloadStringValue else {
             return
         }
         
         self.paused = true
         
-        let alertView = UIAlertController(title: "Barcode detected", message: payload, preferredStyle: .alert)
+        let title = "Barcode detected (confidence \(observation.confidence)"
+        
+        let alertView = UIAlertController(title: title, message: payload, preferredStyle: .alert)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             self.paused = false
