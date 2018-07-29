@@ -23,6 +23,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         if previewLayer == nil {
             startVideoFeed()
         }
+        
+        self.paused = false
     }
     
     override func viewDidLayoutSubviews() {
