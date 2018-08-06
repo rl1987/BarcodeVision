@@ -17,12 +17,48 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="maL-ny-gAc">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t27-hD-MYG">
+                                <rect key="frame" x="185.5" y="311.5" width="4" height="64"/>
+                                <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="4" id="Vzv-XJ-Cj7"/>
+                                    <constraint firstAttribute="height" constant="64" id="e7e-6l-sFd"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nDe-rz-yp2">
+                                <rect key="frame" x="155.5" y="341.5" width="64" height="4"/>
+                                <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="GM6-n7-Pum"/>
+                                    <constraint firstAttribute="height" constant="4" id="SKt-i8-WWV"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="t27-hD-MYG" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="1FR-M8-Bx9"/>
+                            <constraint firstItem="nDe-rz-yp2" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Brc-3W-BKR"/>
+                            <constraint firstItem="maL-ny-gAc" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="DOl-RB-E7z"/>
+                            <constraint firstItem="maL-ny-gAc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Mnz-2D-Uam"/>
+                            <constraint firstItem="maL-ny-gAc" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="YJS-km-bbb"/>
+                            <constraint firstItem="maL-ny-gAc" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="wxY-fV-0Ow"/>
+                            <constraint firstItem="nDe-rz-yp2" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="yhB-pi-FTI"/>
+                            <constraint firstItem="t27-hD-MYG" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="z9f-pj-jyr"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="cameraView" destination="maL-ny-gAc" id="ZmR-tu-gh4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-255.19999999999999" y="-25.637181409295355"/>
         </scene>
     </scenes>
 </document>

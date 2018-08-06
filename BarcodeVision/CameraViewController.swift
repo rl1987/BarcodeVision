@@ -17,6 +17,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     var seqHandler : VNSequenceRequestHandler!
     var paused : Bool = false
     
+    @IBOutlet weak var cameraView: UIView!
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -28,7 +30,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
     
     override func viewDidLayoutSubviews() {
-        previewLayer?.frame = self.view.bounds
+        previewLayer?.frame = self.cameraView.bounds
     }
     
     override var shouldAutorotate: Bool {
@@ -48,7 +50,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         
         let imageLayer = AVCaptureVideoPreviewLayer(session: session)
         imageLayer.frame = self.view.bounds
-        self.view.layer.addSublayer(imageLayer)
+        self.cameraView.layer.addSublayer(imageLayer)
         
         session.startRunning()
         
