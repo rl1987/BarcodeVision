@@ -99,7 +99,7 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         
         self.paused = true
         
-        let title = "\(observation.symbology.rawValue) barcode detected (confidence \(observation.confidence)"
+        let title = "\(observation.symbology.rawValue) barcode detected (confidence \(observation.confidence))"
         
         let alertView = UIAlertController(title: title, message: payload, preferredStyle: .alert)
         
