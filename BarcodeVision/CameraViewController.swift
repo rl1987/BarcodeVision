@@ -77,7 +77,8 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
             return
         }
         
-        guard let pixelBuffer : CVPixelBuffer = sampleBuffer.imageBuffer else {
+        // https://stackoverflow.com/questions/51214586/value-of-type-cmsamplebuffer-has-no-member-imagebuffer
+        guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return
         }
         
