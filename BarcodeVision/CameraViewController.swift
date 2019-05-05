@@ -100,7 +100,9 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         
         self.paused = true
         
-        let title = "\(observation.symbology.rawValue) barcode detected (confidence \(observation.confidence))"
+        let barcodeType = observation.symbology.rawValue.deletingPrefix("VNBarcodeSymbology")
+        
+        let title = "\(barcodeType) barcode detected (confidence \(observation.confidence))"
         
         let alertView = UIAlertController(title: title, message: payload, preferredStyle: .alert)
         
@@ -141,3 +143,10 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     }
 }
 
+// https://www.hackingwithswift.com/example-code/strings/how-to-remove-a-prefix-from-a-string
+extension String {
+    func deletingPrefix(_ prefix: String) -> String {
+        guard self.hasPrefix(prefix) else { return self }
+        return String(self.dropFirst(prefix.count))
+    }
+}
