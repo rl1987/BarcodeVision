@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D5A3ABE227F12420074FE18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D5A3ABD227F12420074FE18 /* Assets.xcassets */; };
 		4D6DF82920DFA62900441C0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6DF82820DFA62900441C0A /* AppDelegate.swift */; };
 		4D6DF82B20DFA62900441C0A /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6DF82A20DFA62900441C0A /* CameraViewController.swift */; };
 		4D6DF82E20DFA62900441C0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D6DF82C20DFA62900441C0A /* Main.storyboard */; };
-		4D6DF83020DFA62B00441C0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D6DF82F20DFA62B00441C0A /* Assets.xcassets */; };
 		4D6DF83320DFA62B00441C0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D6DF83120DFA62B00441C0A /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D5A3ABD227F12420074FE18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../Downloads/Assets.xcassets; sourceTree = "<group>"; };
 		4D6DF82520DFA62900441C0A /* BarcodeVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarcodeVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D6DF82820DFA62900441C0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D6DF82A20DFA62900441C0A /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		4D6DF82D20DFA62900441C0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4D6DF82F20DFA62B00441C0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4D6DF83220DFA62B00441C0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4D6DF83420DFA62B00441C0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,7 +57,7 @@
 				4D6DF82820DFA62900441C0A /* AppDelegate.swift */,
 				4D6DF82A20DFA62900441C0A /* CameraViewController.swift */,
 				4D6DF82C20DFA62900441C0A /* Main.storyboard */,
-				4D6DF82F20DFA62B00441C0A /* Assets.xcassets */,
+				4D5A3ABD227F12420074FE18 /* Assets.xcassets */,
 				4D6DF83120DFA62B00441C0A /* LaunchScreen.storyboard */,
 				4D6DF83420DFA62B00441C0A /* Info.plist */,
 			);
@@ -123,7 +123,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D6DF83320DFA62B00441C0A /* LaunchScreen.storyboard in Resources */,
-				4D6DF83020DFA62B00441C0A /* Assets.xcassets in Resources */,
+				4D5A3ABE227F12420074FE18 /* Assets.xcassets in Resources */,
 				4D6DF82E20DFA62900441C0A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
