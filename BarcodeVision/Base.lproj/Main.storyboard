@@ -70,6 +70,8 @@
                     </view>
                     <connections>
                         <outlet property="cameraView" destination="maL-ny-gAc" id="ZmR-tu-gh4"/>
+                        <outlet property="flashlightLabel" destination="K66-aJ-phF" id="jMl-Qu-Tz5"/>
+                        <outlet property="flashlightSwitch" destination="J1l-Dj-bRo" id="vR1-vz-HrY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

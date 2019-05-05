@@ -11,6 +11,9 @@ import AVFoundation
 import Vision
 
 class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
+    @IBOutlet weak var flashlightSwitch: UISwitch!
+    @IBOutlet weak var flashlightLabel: UILabel!
+    
     var session = AVCaptureSession()
     let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
     var previewLayer : AVCaptureVideoPreviewLayer?
@@ -19,6 +22,15 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     var paused : Bool = false
     
     @IBOutlet weak var cameraView: UIView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification,
+                                               object: nil, queue: .main) { (notification) in
+                                                self.flashlightSwitch.isOn = (self.captureDevice?.torchMode == .on)
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -122,8 +134,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         
         if observation.symbology == .EAN13 || observation.symbology == .EAN8 {
             let searchAction = UIAlertAction(title: "Search", style: .default) { (action) in
-                alertView.dismiss(animated: true, completion: nil)
-                
                 self.paused = false
                 
                 guard let url = URL(string: "https://www.google.com/search?q=EAN+\(payload)") else {
