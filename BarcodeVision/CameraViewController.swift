@@ -26,6 +26,11 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let haveTorch = self.captureDevice?.isTorchAvailable ?? false && self.captureDevice?.isTorchModeSupported(.on) ?? false
+        
+        self.flashlightSwitch.isHidden = !haveTorch
+        self.flashlightLabel.isHidden = !haveTorch
+        
         NotificationCenter.default.addObserver(forName: UIApplication.didBecomeActiveNotification,
                                                object: nil, queue: .main) { (notification) in
                                                 self.flashlightSwitch.isOn = (self.captureDevice?.torchMode == .on)
