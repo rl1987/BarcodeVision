@@ -12,6 +12,7 @@ import Vision
 
 class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     var session = AVCaptureSession()
+    let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
     var previewLayer : AVCaptureVideoPreviewLayer?
     var request : VNDetectBarcodesRequest?
     var seqHandler : VNSequenceRequestHandler!
@@ -39,7 +40,6 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     
     private func startVideoFeed() {
         session.sessionPreset = .high
-        let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
         
         let deviceInput = try! AVCaptureDeviceInput(device: captureDevice!)
         let deviceOutput = AVCaptureVideoDataOutput()
@@ -123,6 +123,20 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         
         present(alertView, animated: false) {
             generator.selectionChanged()
+        }
+    }
+    
+    @IBAction func flashlightSwitchFlipped(_ sender: UISwitch) {
+        if let captureDevice = self.captureDevice,
+            captureDevice.isTorchAvailable && captureDevice.isTorchModeSupported(.on) {
+            do {
+                try captureDevice.lockForConfiguration()
+                captureDevice.torchMode = sender.isOn ? .on : .off
+                captureDevice.unlockForConfiguration()
+            } catch {
+                print("setting torch mode failed!")
+                sender.isOn = !sender.isOn
+            }
         }
     }
 }
