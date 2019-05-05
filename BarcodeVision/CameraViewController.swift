@@ -120,6 +120,24 @@ class CameraViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
         alertView.addAction(cancelAction)
         alertView.addAction(shareAction)
         
+        if observation.symbology == .EAN13 || observation.symbology == .EAN8 {
+            let searchAction = UIAlertAction(title: "Search", style: .default) { (action) in
+                alertView.dismiss(animated: true, completion: nil)
+                
+                self.paused = false
+                
+                guard let url = URL(string: "https://www.google.com/search?q=EAN+\(payload)") else {
+                    return
+                }
+                
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            }
+            
+            alertView.addAction(searchAction)
+        }
+        
         let generator = UISelectionFeedbackGenerator()
         generator.prepare()
         
